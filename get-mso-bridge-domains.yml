@@ -1,0 +1,17 @@
+---
+- name: Get MSO Bridge Domains
+  hosts: mso
+
+  tasks:
+  - name: Query all site BDs
+    mso_schema_site_bd:
+      host: "{{ ansible_host }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: no
+      schema: Test
+      site: Top Site
+      template: Template1
+      state: query
+    delegate_to: localhost
+    register: query_result
